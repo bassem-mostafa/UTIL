@@ -113,6 +113,7 @@
 
     #define UTIL_MemorySetZero( Destination, Length )                                         ( memset( ( void * ) ( Destination ), 0x00, ( size_t ) ( Length ) ) )
     #define UTIL_MemoryCopy( Destination, Source, Length )                                    ( memmove( ( void * ) ( Destination ), ( void * ) ( Source ), ( size_t ) ( Length ) ) )
+    #define UTIL_MemoryAppend( Destination, Length_Occupied, Length_MAX, Source, Length )     ( memmove( ( void * ) ( Destination ) + ( Length_Occupied ), ( void * ) ( Source ), UTIL_Min( ( size_t ) ( Length ), ( ( size_t ) ( Length_MAX ) - ( Length_Occupied ) ) ) ) )
 
     #define UTIL_CharacterIsDigit( Character )                                                ( '0' <= ( Character ) && ( Character ) <= '9' )
     #define UTIL_CharacterIsAlpha( Character )                                                ( ( 'a' <= ( Character ) && ( Character ) <= 'z' ) || ( 'A' <= ( Character ) && ( Character ) <= 'Z' ) )
