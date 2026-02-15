@@ -60,17 +60,17 @@ extern "C"
 {
     #endif /* __cplusplus */
 
-// #############################################################################
-// #### Include(s) #############################################################
-// #############################################################################
+    // #############################################################################
+    // #### Include(s) #############################################################
+    // #############################################################################
 
     #include <stdint.h>
     #include <stdio.h>
     #include <string.h>
 
-// #############################################################################
-// #### Public Macro(s) ########################################################
-// #############################################################################
+    // #############################################################################
+    // #### Public Macro(s) ########################################################
+    // #############################################################################
 
     #define UTIL_UNUSED( Variable )                                                           ( ( void ) Variable )
 
@@ -108,8 +108,8 @@ extern "C"
     #define UTIL_DayToMonth( Day )                                                            /* No Direct Mapping Exist */
     #define UTIL_MonthToYear( Month )                                                         ( ( double ) ( Month ) / 12.0l )
 
-    #define UTIL_FixedToFloat( FixedValue, FractionBits )                                     ( ( float ) ( FixedValue ) / ( 1 << ( FractionBits ) ) )
     #define UTIL_FixedToDouble( FixedValue, FractionBits )                                    ( ( double ) ( FixedValue ) / ( 1 << ( FractionBits ) ) )
+    #define UTIL_DoubleToFixed( DoubleValue, FractionBits )                                   ( ( uint32_t ) ( ( DoubleValue ) * ( 1 << ( FractionBits ) ) ) )
 
     #define UTIL_SizeOf( Type )                                                               ( sizeof( Type ) )
     #define UTIL_SizeOfWithoutNull( Type )                                                    ( UTIL_SizeOf( Type ) - 1 )
@@ -279,73 +279,73 @@ extern "C"
     #define UTIL_CSI_BracketedPasteModeEnable( )                 UTIL_CSI_Prefix "?2004h"
     #define UTIL_CSI_BracketedPasteModeDisable( )                UTIL_CSI_Prefix "?2004l"
 
-// #############################################################################
-// #### Public Type(s) #########################################################
-// #############################################################################
+    // #############################################################################
+    // #### Public Type(s) #########################################################
+    // #############################################################################
 
-/**
- *  @brief UTIL Operation Status
- *
- *  @enum UTIL_Status_t
- */
-typedef enum UTIL_Status
-{
-    UTIL_Status_Success = 0,     ///< Success
-    UTIL_Status_ArgumentInvalid, ///< Argument Invalid
-    UTIL_Status_NotSupported,    ///< Not Supported
-    UTIL_Status_Error,           ///< General Error
-    UTIL_Status_Busy,            ///< Busy
-    UTIL_Status_Timeout,         ///< Timeout
-} UTIL_Status_t;
+    /**
+     *  @brief UTIL Operation Status
+     *
+     *  @enum UTIL_Status_t
+     */
+    typedef enum UTIL_Status
+    {
+        UTIL_Status_Success = 0,     ///< Success
+        UTIL_Status_ArgumentInvalid, ///< Argument Invalid
+        UTIL_Status_NotSupported,    ///< Not Supported
+        UTIL_Status_Error,           ///< General Error
+        UTIL_Status_Busy,            ///< Busy
+        UTIL_Status_Timeout,         ///< Timeout
+    } UTIL_Status_t;
 
-// #############################################################################
-// #### Public Method(s) #######################################################
-// #############################################################################
+    // #############################################################################
+    // #### Public Method(s) #######################################################
+    // #############################################################################
 
-/**
- *  @brief Convert HEX string into BYTE string
- *
- *  @return UTIL_Status_t
- */
-UTIL_Status_t UTIL_HexStringToBytes( uint8_t * HexString, uint32_t HexStringLength, uint8_t * Bytes, uint32_t BytesLength );
+    /**
+     *  @brief Convert HEX string into BYTE string
+     *
+     *  @return UTIL_Status_t
+     */
+    UTIL_Status_t UTIL_HexStringToBytes( uint8_t * HexString, uint32_t HexStringLength, uint8_t * Bytes, uint32_t BytesLength );
 
-/**
- *  @brief Convert BYTE string into HEX string
- *
- *  @return UTIL_Status_t
- */
-UTIL_Status_t UTIL_BytesToHexString( uint8_t * Bytes, uint32_t BytesLength, uint8_t * HexString, uint32_t HexStringLength );
+    /**
+     *  @brief Convert BYTE string into HEX string
+     *
+     *  @return UTIL_Status_t
+     */
+    UTIL_Status_t UTIL_BytesToHexString( uint8_t * Bytes, uint32_t BytesLength, uint8_t * HexString, uint32_t HexStringLength );
 
-/**
- *  @brief Reverse memory region content
- *
- *  @return UTIL_Status_t
- */
-UTIL_Status_t UTIL_MemoryReverse( uint8_t * Memory, uint32_t Length );
+    /**
+     *  @brief Reverse memory region content
+     *
+     *  @return UTIL_Status_t
+     */
+    UTIL_Status_t UTIL_MemoryReverse( uint8_t * Memory, uint32_t Length );
 
-/**
- *  @brief Sort Array Of Doubles
- *
- *  @return UTIL_Status_t
- */
-UTIL_Status_t UTIL_SortDouble( double * Array, uint32_t Length );
+    /**
+     *  @brief Sort Array Of Doubles
+     *
+     *  @return UTIL_Status_t
+     */
+    UTIL_Status_t UTIL_SortDouble( double * Array, uint32_t Length );
 
-// #############################################################################
-// #### Public Variable(s) #####################################################
-// #############################################################################
+    // #############################################################################
+    // #### Public Variable(s) #####################################################
+    // #############################################################################
 
-/**
- *  @brief Version
- */
-extern const char UTIL_VERSION[];
+    /**
+     *  @brief Version
+     */
+    extern const char UTIL_VERSION[];
 
-// #############################################################################
-// #### File Guard #############################################################
-// #############################################################################
+    // #############################################################################
+    // #### File Guard #############################################################
+    // #############################################################################
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 } /* extern "C" */
-#endif /* __cplusplus */
+    #endif /* __cplusplus */
 
 #endif /* UTIL_H_ */
 
