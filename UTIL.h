@@ -64,6 +64,7 @@ extern "C"
     // #### Include(s) #############################################################
     // #############################################################################
 
+    #include <stddef.h>
     #include <stdint.h>
     #include <stdio.h>
     #include <string.h>
@@ -73,6 +74,8 @@ extern "C"
     // #############################################################################
 
     #define UTIL_UNUSED( Variable )                                                           ( ( void ) Variable )
+
+    #define UTIL_InstanceOf( Reference, Type, Attribute )                                     ( ( Type * ) ( ( ( void * ) ( Reference ) ) - offsetof( Type, Attribute ) ) )
 
     #define UTIL_BIT( Index )                                                                 ( ( uint32_t ) ( 1 ) << ( Index ) )
 
