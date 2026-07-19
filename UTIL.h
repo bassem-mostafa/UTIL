@@ -75,7 +75,8 @@ extern "C"
 
     #define UTIL_UNUSED( Variable )                                                           ( ( void ) Variable )
 
-    #define UTIL_InstanceOf( Reference, Type, Attribute )                                     ( ( Type * ) ( ( ( uint8_t * ) ( Reference ) ) - offsetof( Type, Attribute ) ) )
+    #define UTIL_OffsetOf( Type, Attribute )                                                  offsetof( Type, Attribute )
+    #define UTIL_InstanceOf( Reference, Type, Attribute )                                     ( ( Type * ) ( ( ( uint8_t * ) ( Reference ) ) - UTIL_OffsetOf( Type, Attribute ) ) )
 
     #define UTIL_BIT( Index )                                                                 ( ( uint32_t ) ( 1 ) << ( Index ) )
 
